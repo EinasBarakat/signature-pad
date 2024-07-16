@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signature Pad</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f3f3f3;
+        }
+        #signature-pad {
+            border: 1px solid #ccc;
+            background-color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="signature-pad" width="400" height="200"></canvas>
+    <button id="save-button">Save</button>
+    <script src="https://cdn.jsdelivr.net/npm/signature_pad@2.3.2/dist/signature_pad.min.js"></script>
+    <script>
+        const canvas = document.getElementById('signature-pad');
+        const signaturePad = new SignaturePad(canvas);
+        document.getElementById('save-button').addEventListener('click', () => {
+            const dataUrl = signaturePad.toDataURL();
+            window.location.href = 'your-adalo-app://signature?data=' + encodeURIComponent(dataUrl);
+        });
+    </script>
+</body>
+</html>
